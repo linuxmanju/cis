@@ -1,6 +1,11 @@
 class abinbev_cis_suid_rem (
   String            $system_environment       = 'default',
   Boolean           $pe_environment           = false,
+  Array            $whitelist                = [],
+  Array            $blacklist                = [],
+  Array            $folders_to_restrict      = [],
+  Boolean             $remove_from_unknown     = true,
+  Boolean             $dry_run_on_unknown      = true,
 
 ) {
 
@@ -33,7 +38,7 @@ class abinbev_cis_suid_rem (
       $shadowmode = '0600'
     }
   }
-  
+
 
   # Merge defaults
 

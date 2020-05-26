@@ -2,15 +2,17 @@
 
 suid_whitelist="<%= @final_whitelist.join('|') %>"
 
-#filesystems to check, we ignore mounts with nosuid and some sys mounts
+#filesystems to check, we ignore mounts with nosuid and some sys mounts and NFS for good.. 
+# NFS mounted folders would be evaluated in NFS server hardening locally and ideally.. This would avoid duplicate runs and racing
 filesystems=`mount | egrep -v "nosuid|cgroup|udev|none|nfs"| cut -f3 -d" "`
 
 for fs in $filesystems
 do
   files=`/usr/bin/find $fs -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | /bin/egrep -v "$suid_whitelist"`
   if [ -n "$files" ]; then
+    :> /tmp/suid_gid_report.txt
     <% if @dry_run_on_unknown %>
-    echo "remove from: $files"
+    echo "remove from: $files" >> /tmp/suid_gid_report.txt
     <% else %>
     chmod ug-s $files
     <% end %>
