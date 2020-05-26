@@ -33,6 +33,7 @@ class abinbev_cis_suid_rem (
       $shadowmode = '0600'
     }
   }
+  
 
   # Merge defaults
 
