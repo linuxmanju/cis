@@ -5,7 +5,7 @@ class abinbev_cis_suid_rem (
   Array            $blacklist                = [],
   Array            $folders_to_restrict      = [],
   Boolean             $remove_from_unknown     = true,
-  Boolean             $dry_run_on_unknown      = true,
+  Boolean             $dry_run_on_unknown      = false,
 
 ) {
 

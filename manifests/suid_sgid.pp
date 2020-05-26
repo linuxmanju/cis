@@ -1,10 +1,10 @@
 class abinbev_cis_suid_rem::suid_sgid (
   Array   $whitelist           = [],
   Array   $blacklist           = [],
-  Boolean $remove_from_unknown = false,
+  Boolean $remove_from_unknown = true,
   Boolean $dry_run_on_unknown  = false,
-) {
 
+) {
 
 
   $system_blacklist = [
